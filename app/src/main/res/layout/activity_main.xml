@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:foregroundGravity="top|center"
+            android:gravity="top|center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/LinearLayoutOnMainScreenStyle"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:text="Выберите измеряемую среду"/>
+
+                <Spinner
+                    android:id="@+id/spinnerMeasuredMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:spinnerMode="dialog"
+                    android:background="@drawable/spinner_background"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayoutNaturalGas"
+                        style="@style/LinearLayoutOnMainScreenStyle"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="Выберите метод расчета" />
+
+                        <Button
+                            android:id="@+id/Gas8740Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:onClick="onGas8740ButtonClick"
+                            android:text="ГОСТ Р 8.740"
+                            android:textColor="@color/colorWhite" />
+
+                        <Button
+                            android:id="@+id/Gas26672011Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:onClick="onGas26672011ButtonClick"
+                            android:text="МИ 2667-2011"
+                            android:textColor="@color/colorWhite" />
+
+                        <Button
+                            android:id="@+id/Gas8586Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="ГОСТ 8.586-2005"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayoutCompressedAir"
+                        style="@style/LinearLayoutOnMainScreenStyle"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="Метод расчета" />
+
+                        <Button
+                            android:id="@+id/AirMR11203Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:onClick="onAirMR11203ButtonClick"
+                            android:text="ГССД МР 112-03"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayoutOther"
+                        style="@style/LinearLayoutOnMainScreenStyle"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="Метод расчета" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayoutWater"
+                        style="@style/LinearLayoutOnMainScreenStyle"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="Метод расчета" />
+
+                        <Button
+                            android:id="@+id/WaterButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:onClick="onWaterButtonClick"
+                            android:text="Расчет ТЭн воды"
+                            android:textColor="@color/colorWhite" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayoutSteam"
+                        style="@style/LinearLayoutOnMainScreenStyle"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:text="Метод расчета" />
+
+                        <Button
+                            android:id="@+id/SaturatedSteamButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:onClick="onSaturatedSteamButtonClick"
+                            android:text="ТЭн насыщенного пара"
+                            android:textColor="@color/colorWhite" />
+
+                        <Button
+                            android:id="@+id/SuperheatedSteamButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:onClick="onSuperheatedSteamButtonClick"
+                            android:text="ТЭн перегретого пара"
+                            android:textColor="@color/colorWhite" />
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

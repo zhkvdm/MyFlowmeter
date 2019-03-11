@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name">Расходомер</string> <!-- Flowmeter -->
+    <string name="history_activity_name">История</string> <!-- History -->
+    <string name="gas_name">Природный газ</string> <!-- Natural gas -->
+    <string name="air_name">Сжатый воздух</string> <!-- Air -->
+
+    <string name="delete_database_table">Удалить БД</string> <!-- Delete DB -->
+    <string name="dialog_delete_database_table">Очистить историю?</string> <!-- Clear history? -->
+
+    <string name="dialog_yes">Да</string> <!-- Delete DB -->
+    <string name="dialog_cancel">Отмена</string> <!-- Delete DB -->
+
+    <string-array name="MeasuredMediums">
+        <item>Природный газ</item>
+        <item>Сжатый воздух</item>
+        <item>Прочие газы</item>
+        <item>Вода</item>
+        <item>Пар</item>
+    </string-array>
+
+    <string-array name="RecalculationType">
+        <item>P-пересчет</item>
+        <item>PT-пересчет</item>
+        <item>PTZ-пересчет</item>
+        <item>Пересчет по плотности</item>
+    </string-array>
+
+    <string-array name="TemperatureDimension">
+        <item>[C]</item>
+        <item>[K]</item>
+    </string-array>
+
+    <string-array name="VolumeFlowDimension">
+        <item>[куб.м/с]</item>
+        <item>[куб.м/ч]</item>
+        <item>[л/с]</item>
+        <item>[л/м]</item>
+    </string-array>
+
+    <string-array name="PressureDimension">
+        <item>[Па]</item>
+        <item>[кПа]</item>
+        <item>[МПа]</item>
+        <item>[бар]</item>
+        <item>[кгс/кв.см]</item>
+        <item>[кгс/кв.м]</item>
+        <item>[мм.рт.ст.]</item>
+    </string-array>
+
+    <string-array name="DistanceDimension">
+        <item>[мм]</item>
+        <item>[м]</item>
+    </string-array>
+
+    <string name="title_activity_air_flowmeter">Сжатый воздух</string>
+    <string name="title_activity_gas_flowmeter">Природный газ</string>
+    <string name="title_activity_gas_annubar">Природный газ</string>
+    <string name="action_settings">Настойки</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string-array name="SteelMaterialName">
+        <item>35Л</item>
+        <item>45Л</item>
+        <item>20ХМЛ</item>
+        <item>12Х18Н9ТЛ</item>
+        <item>15К, 20К</item>
+        <item>22К</item>
+        <item>16ГС</item>
+        <item>09Г2С</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30, 35</item>
+        <item>40, 45</item>
+        <item>10Г2</item>
+        <item>38ХА</item>
+        <item>40Х</item>
+        <item>15ХМ</item>
+        <item>30ХМ, 30ХМА</item>
+        <item>12Х1МФ</item>
+        <item>25Х1МФ</item>
+        <item>25Х2М1Ф</item>
+        <item>15Х5М</item>
+        <item>18Х2Н4М2</item>
+        <item>38ХН3МФА</item>
+        <item>08Х13</item>
+        <item>12Х13</item>
+        <item>20Х13</item>
+        <item>30Х13</item>
+        <item>10Х14Г14Н4Т</item>
+        <item>08Х18Н10</item>
+        <item>12Х18Н9Т</item>
+        <item>12Х18Н10Т, 10Х18Н12Т</item>
+        <item>08Х18Н10Т</item>
+        <item>08Х22Н6Т</item>
+        <item>37Х12Н8Г8МФБ</item>
+        <item>31Х19Н9МВБТ</item>
+        <item>06ХН28МДТ</item>
+        <item>20Л</item>
+        <item>25Л</item>
+    </string-array>
+
+    <string-array name="AnnubarMaterialName">
+        <item>Нержавеющая сталь 316 (S31600/CF8M)</item>
+        <item>Hastelloy C-276</item>
+        <item>Monel 400</item>
+        <item>Аллюминий (6063-Т6)</item>
+        <item>Нержавеющая сталь 304</item>
+        <item>Титан (B348 Gr 2)</item>
+        <item>Alloy 800H</item>
+        <item>PVDF (KYNAR)</item>
+    </string-array>
+
+    <string-array name="AnnubarTypeName">
+        <item>ANNUBAR Diamond II+</item>
+        <item>ANNUBAR 485 / 285</item>
+        <item>ANNUBAR 585</item>
+    </string-array>
+
+    <string-array name="AnnubarTypesize1Name">
+        <item>10 (круглая трубка)</item>
+        <item>10 (квадратная трубка)</item>
+        <item>15/16</item>
+        <item>25/26</item>
+        <item>35/36</item>
+        <item>45/46</item>
+    </string-array>
+
+    <string-array name="AnnubarTypesize2Name">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="AnnubarTypesize3Name">
+        <item>11</item>
+        <item>22</item>
+        <item>44</item>
+    </string-array>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+</resources>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="GasFlowmeterActivity"
+    tools:showIn="@layout/activity_gas_flowmeter">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <!--LinearLayout
+        android:layout_width="334dp"
+        android:layout_height="485dp"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+        android:background="@drawable/layout_background"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".65"
+                    android:text="Тип пересчета" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:background="@drawable/spinner_simple_background">
+
+                    <Spinner
+                        android:id="@+id/spinnerRecalculationType"
+                        style="@style/SpinnerStyle"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/LinearLayoutT_PT_PTZ_Recalculation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <LinearLayout style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.7"
+                            android:singleLine="true"
+                            android:text="Объемный расход" />
+
+                        <EditText
+                            android:id="@+id/editTextVolumeFlow"
+                            style="@style/EditTextStyle"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="1000" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_weight="1.7"
+                            android:background="@drawable/spinner_simple_background">
+                            <Spinner
+                                android:id="@+id/spinnerVolumeFlowDimension"
+                                style="@style/SpinnerStyle"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                        <TextView
+                            android:id="@+id/Температура"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.7"
+                            android:text="Температура" />
+
+                        <EditText
+                            android:id="@+id/editTextTemperature"
+                            android:layout_weight="1"
+                            android:inputType="numberSigned|numberDecimal"
+                            android:text="-23"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            style="@style/EditTextStyle"/>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_weight="1.7"
+                            android:background="@drawable/spinner_simple_background">
+                            <Spinner
+                                android:id="@+id/spinnerTemperatureDimension"
+                                style="@style/SpinnerStyle" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/LinearLayoutPTZ_Recalculation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="Плотность" />
+
+                                <EditText
+                                    android:id="@+id/editTextDensity"
+                                    android:layout_weight="1"
+                                    android:inputType="numberDecimal"
+                                    android:text="0.66"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    style="@style/EditTextStyle"/>
+
+                                <TextView
+                                    android:id="@+id/textView3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="[кг/куб.м]" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="Доля азота" />
+
+                                <EditText
+                                    android:id="@+id/editTextNitrogen"
+                                    android:layout_weight="1"
+                                    android:inputType="numberDecimal"
+                                    android:text="20"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    style="@style/EditTextStyle" />
+
+                                <TextView
+                                    android:id="@+id/textView5"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="[%]" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="Доля углерода" />
+
+                                <EditText
+                                    android:id="@+id/editTextCarbon"
+                                    android:layout_weight="1"
+                                    android:inputType="numberDecimal"
+                                    android:text="0.1"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    style="@style/EditTextStyle" />
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="[%]" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/LinearLayoutT_PT_Recalculation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <LinearLayout style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Коэффициент сжимаемости" />
+
+                                <EditText
+                                    android:id="@+id/editTextCompressFactor"
+                                    style="@style/EditTextStyle"
+                                    android:layout_weight=".6"
+                                    android:inputType="numberDecimal"
+                                    android:text="1"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="Температура в СУ" />
+
+                                <EditText
+                                    android:id="@+id/editTextTemperatureSC"
+                                    style="@style/EditTextStyle"
+                                    android:layout_weight="1"
+                                    android:inputType="numberSigned|numberDecimal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:text="20" />
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_weight="1.7"
+                                    android:background="@drawable/spinner_simple_background">
+                                    <Spinner
+                                        android:id="@+id/spinnerTemperatureSC"
+                                        style="@style/SpinnerStyle" />
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="Давление в СУ" />
+
+                                <EditText
+                                    android:id="@+id/editTextPressureSC"
+                                    style="@style/EditTextStyle"
+                                    android:layout_weight="1"
+                                    android:inputType="numberDecimal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:text="0.101325" />
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_weight="1.7"
+                                    android:background="@drawable/spinner_simple_background">
+                                    <Spinner
+                                        android:id="@+id/spinnerPressureSC"
+                                        style="@style/SpinnerStyle" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".6"
+                            android:text="Давление" />
+
+                        <CheckBox
+                            android:id="@+id/checkBoxAbsolute"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Абсолютное" />
+
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/LinearLayoutAbsolutePressure"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="Абсолютное" />
+
+                                <EditText
+                                    android:id="@+id/editTextAbsolutePressure"
+                                    android:layout_weight="1"
+                                    android:inputType="numberDecimal"
+                                    android:text="0.2"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    style="@style/EditTextStyle"/>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_weight="1.7"
+                                    android:background="@drawable/spinner_simple_background">
+                                    <Spinner
+                                        android:id="@+id/spinnerAbsolutePressureDimension"
+                                        style="@style/SpinnerStyle" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/LinearLayoutUNAbsolutePressure"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <LinearLayout
+                                style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="Атмосферное" />
+
+                                <EditText
+                                    android:id="@+id/editTextAtmosphericPressure"
+                                    android:layout_weight="1"
+                                    android:inputType="numberDecimal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    style="@style/EditTextStyle"/>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_weight="1.7"
+                                    android:background="@drawable/spinner_simple_background">
+                                    <Spinner
+                                        android:id="@+id/spinnerAtmosphericPressureDimension"
+                                        style="@style/SpinnerStyle" />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1.7"
+                                    android:text="Избыточное" />
+
+                                <EditText
+                                    android:id="@+id/editTextRedundantPressure"
+                                    android:layout_weight="1"
+                                    android:inputType="numberDecimal"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    style="@style/EditTextStyle"/>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_weight="1.7"
+                                    android:background="@drawable/spinner_simple_background">
+                                    <Spinner
+                                        android:id="@+id/spinnerRedundantPressureDimension"
+                                        style="@style/SpinnerStyle" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayoutRO_Recalculation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <LinearLayout
+                        style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Плотность" />
+
+                        <EditText
+                            android:id="@+id/editTextDensity_RORec"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal"
+                            style="@style/EditTextStyle"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/LinearLayoutOnSecondWindowsStyle">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Плотность в СУ" />
+
+                        <EditText
+                            android:id="@+id/editTextDensitySC_RORec"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:inputType="numberDecimal"
+                            style="@style/EditTextStyle"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+        <!--/LinearLayout-->
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

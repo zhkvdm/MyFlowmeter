@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-->Тема, определяющая внешний вид Spinner's<-->
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="5dp"/>
+    <!--padding android:left="10dp" android:right="10dp" android:top="3dp" android:bottom="3dp"/-->
+    <stroke android:width="1dp" android:color="@color/colorLightGray" />
+    <solid android:color="@color/colorWhite"/>
+
+    <!--gradient android:startColor="@color/colorLightGray" android:endColor="@color/colorWhite" android:angle="45"/-->
+</shape>

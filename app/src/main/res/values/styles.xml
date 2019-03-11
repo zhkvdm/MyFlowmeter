@@ -1,0 +1,80 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorBlue</item>
+        <item name="colorPrimaryDark">@color/colorBlueDark</item>
+        <item name="colorAccent">@color/colorDarkBlue</item>
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="android:actionBarStyle">@style/AppThemeActionBar</item>
+        <item name="android:fontFamily">"sans-serif-medium"</item>
+        <item name="android:textSize">@dimen/app_font_size</item>
+    </style>
+
+    <!-- Стиль начального экрана SplashScreenActivity -->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen_drawable</item>
+    </style>
+
+    <style name="AppThemeActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:actionBarSize">40dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Стиль Button's -->
+    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_style</item>
+        <item name="android:fontFamily">"sans-serif"</item>
+        <item name="android:textSize">@dimen/font_size_medium</item>
+    </style>
+
+    <!-- Стиль LinearLayout's в MainActivity -->
+    <style name="LinearLayoutOnMainScreenStyle">
+        <item name="android:background">@drawable/layout_background</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:elevation">3dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Стиль LinearLayout's в MainActivity -->
+    <style name="LinearLayoutOnSecondWindowsStyle">
+        <!--item name="android:background">@drawable/layout_background</item-->
+        <item name="android:layout_width">match_parent</item>
+        <!--item name="android:layout_height">match_parent</item-->
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!-- Стиль EditText's -->
+    <style name="EditTextStyle">
+        <item name="android:background">@drawable/edittext_background</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <!--item name="android:height">28dp</item-->
+    </style>
+
+    <!-- Стиль Spinner's -->
+    <style name="SpinnerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:spinnerMode">dropdown</item>
+    </style>
+
+</resources>
