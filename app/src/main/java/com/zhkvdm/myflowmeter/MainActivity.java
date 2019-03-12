@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity /*implements ConfirmationDia
 
     private Spinner spinnerMeasuredMedium;
 
-    protected PDFDocument PDFDocumentAdapter;
+    //protected PDFDocument PDFDocumentAdapter;
 
     protected DatabaseHelper mDatabaseHelper;
     //protected SQLiteDatabase mSQLiteDatabase;
@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity /*implements ConfirmationDia
         }
 
         // создание документа PDF
-        PDFDocumentAdapter = new PDFDocument(getApplicationContext());
+        //PDFDocumentAdapter = new PDFDocument(getApplicationContext());
         // работа с БД
-        mDatabaseHelper = new DatabaseHelper(this);
+        //mDatabaseHelper = new DatabaseHelper(this);
         //mSQLiteDatabase = mDatabaseHelper.getWritableDatabase();
 
         // Настройка вида actionbar'а
@@ -233,9 +233,9 @@ public class MainActivity extends AppCompatActivity /*implements ConfirmationDia
     public void onAirMR11203ButtonClick(View view)
     {
         // выводим сообщение
-        Toast.makeText(this, "onAirMR11203ButtonClick", Toast.LENGTH_SHORT).show();
-        //Intent i = new Intent(this, AirFlowmeterActivity.class);
-        //startActivity(i);
+        //Toast.makeText(this, "onAirMR11203ButtonClick", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, AirFlowmeterActivity.class);
+        startActivity(i);
     }
 
     public void onGas26672011ButtonClick(View view)

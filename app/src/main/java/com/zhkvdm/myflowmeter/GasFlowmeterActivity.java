@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -18,26 +19,17 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class GasFlowmeterActivity extends /*AppCompatActivity,*/ MainActivity implements ResultsDialogFragment.ResultDialogListener {
+public class GasFlowmeterActivity extends AppCompatActivity/*, MainActivity */ implements ResultsDialogFragment.ResultDialogListener {
 
     public static final String LOG_TAG = "myLog";
+
+    protected PDFDocument PDFDocumentAdapter;
+    protected DatabaseHelper mDatabaseHelper;
 
     String
             environ,
             method,
             result;
-
-
-    // Обработка нажатия на кнопку ОК в диалоге вывода результата
-    @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-        Log.d(LOG_TAG, "onDialogPositiveClick from GasFlowmeterActivity");
-    }
-    // Обработка нажатия на кнопку PDF в диалоге вывода результата
-    @Override
-    public void onDialogNeutralClick(DialogFragment dialog) {
-        PDFDocumentAdapter.createPDF(getString(R.string.title_activity_gas_flowmeter), "P-пересчет", result, MainActivity.getDateTime());
-    }
 
     final double Ts = 293.15; // Стандартная температура среды, К
     final double Ps = 0.101325; // Стандартное абсолютное давление среды, МПа
@@ -120,6 +112,11 @@ public class GasFlowmeterActivity extends /*AppCompatActivity,*/ MainActivity im
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_flowmeter);
+
+        // создание документа PDF
+        PDFDocumentAdapter = new PDFDocument(getApplicationContext());
+        // работа с БД
+        mDatabaseHelper = new DatabaseHelper(this);
 
         //Настройка ActionBar'а
         ActionBar mActionBar = getSupportActionBar();
@@ -266,6 +263,17 @@ public class GasFlowmeterActivity extends /*AppCompatActivity,*/ MainActivity im
         spinnerAtmosphericPressureDimension.setSelection(2);
         spinnerRedundantPressureDimension.setSelection(2);
 
+    }
+
+    // Обработка нажатия на кнопку ОК в диалоге вывода результата
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Log.d(LOG_TAG, "onDialogPositiveClick from GasFlowmeterActivity");
+    }
+    // Обработка нажатия на кнопку PDF в диалоге вывода результата
+    @Override
+    public void onDialogNeutralClick(DialogFragment dialog) {
+        PDFDocumentAdapter.createPDF(getString(R.string.title_activity_gas_flowmeter), "P-пересчет", result, MainActivity.getDateTime());
     }
 
 

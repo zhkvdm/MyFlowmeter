@@ -24,9 +24,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HistoryActivity extends /*AppCompatActivity*/MainActivity implements ResultsDialogFragment.ResultDialogListener, ConfirmationDialogFragment.ConfirmationDialogListener {
+public class HistoryActivity extends AppCompatActivity/*MainActivity*/ implements ResultsDialogFragment.ResultDialogListener, ConfirmationDialogFragment.ConfirmationDialogListener {
 
     public static final String LOG_TAG = "myLog";
+
+    protected PDFDocument PDFDocumentAdapter;
+    protected DatabaseHelper mDatabaseHelper;
     Cursor cursor;
     ListView listView;
 
@@ -59,6 +62,11 @@ public class HistoryActivity extends /*AppCompatActivity*/MainActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        // создание документа PDF
+        PDFDocumentAdapter = new PDFDocument(getApplicationContext());
+        // работа с БД
+        mDatabaseHelper = new DatabaseHelper(this);
 
         // Настройка ActionBar'а
         ActionBar mActionBar = getSupportActionBar();
