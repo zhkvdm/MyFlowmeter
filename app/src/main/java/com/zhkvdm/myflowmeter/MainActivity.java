@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity /*implements ConfirmationDia
     //int[] spinnerIconsArray;
     int spinnerIconsArray[] = {
             R.mipmap.ic_gas,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher};
+            R.mipmap.ic_air,
+            R.mipmap.ic_other,
+            R.mipmap.ic_water,
+            R.mipmap.ic_steam};
 
     private Spinner spinnerMeasuredMedium;
 
