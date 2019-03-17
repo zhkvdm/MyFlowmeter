@@ -146,7 +146,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null, // значения для условия WHERE
                 null, // Don't group the rows
                 null, // Don't filter by row groups
-                null); // порядок сортировки
+                StoryTable._ID + " DESC"); // порядок сортировки
 
 
         //Cursor res = mSQLiteDatabase.rawQuery("Select * from " + StoryTable.TABLE_NAME, null);

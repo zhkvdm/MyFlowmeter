@@ -273,7 +273,7 @@ public class GasFlowmeterActivity extends AppCompatActivity/*, MainActivity */ i
     // Обработка нажатия на кнопку PDF в диалоге вывода результата
     @Override
     public void onDialogNeutralClick(DialogFragment dialog) {
-        PDFDocumentAdapter.createPDF(getString(R.string.title_activity_gas_flowmeter), "P-пересчет", result, MainActivity.getDateTime());
+        PDFDocumentAdapter.createPDF(getString(R.string.title_activity_gas_flowmeter), "ГОСТ Р 8.740", result, MainActivity.getDateTime());
     }
 
 

@@ -1,5 +1,6 @@
 package com.zhkvdm.myflowmeter;
 
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 //
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,7 +25,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AirFlowmeterActivity extends AppCompatActivity {
+public class AirFlowmeterActivity extends AppCompatActivity implements ResultsDialogFragment.ResultDialogListener {
+
+    public static final String LOG_TAG = "myLog";
+
+    protected PDFDocument PDFDocumentAdapter;
+    protected DatabaseHelper mDatabaseHelper;
 
     private CheckBox checkBoxAbsolute;
 
@@ -65,94 +72,7 @@ public class AirFlowmeterActivity extends AppCompatActivity {
 
     double Qc;// Объемный расход среды, приведенный к С.У., куб.м/ч
 
-    static double
-            Pcr = 3.766, // Давление в критической точке, МПа
-            Tcr = 132.5, // Температура в критической точке, К
-            ROcr = 316.5, // Плотность в критической точке, кг/куб.м
-            Zcr = 0.3127934, // Фактор сжимаемости в критической точке
-            Zs = 0.99961, // Фактор сжимаемости при стандартных условиях
-            Ts = 293.15, // Стандартная температура среды, К
-            Ps = 0.101325; // Стандартное абсолютное давление среды, МПа
 
-    double[][] b = {
-            { 0.366812e0, -0.252712e0, -2.84986e0, 3.60179e0, -3.18665e0, 1.54029e0, -0.260953e0, -0.391073e-1 }, //b0
-            { 0.140979e0, -0.724337e-1, 0.780803e0, -0.143512e0, 0.633134e0, -0.891012e0, 0.582531e-1, 0.172908e-1 },
-            { -0.790202e-1, -0.213427e0, -1.25167e0, -0.164970e0, 0.684822e0, 0.221185e0, 0.634056e-1},
-            { 0.313247e0, 0.885714e0, 0.634585e0, -0.162912e0, -0.217973e0, 0.925251e-1, 0.893863e-3},
-            { -0.444978e0, -0.734544e0, 0.199522e-1, -0.176007e0, -0.998455e-1, -0.620965e-1},
-            { 0.28578e0, 0.258413e0, 0.749790e-1, 0.859487e-1, -0.884071e-3},
-            { -0.636588e-1, -0.105811e0, -0.345172e-1, 0.429817e-1, 0.631385e-2},
-            { 0.116375e-3, 0.361900e-1, -0.195095e-1, -0.379583e-2}};
-
-    double[] a = {-66.9619e0, 322.119e0, -547.958e0, 347.643e0, 38.4042e0, -2.18923e0};
-
-    double[] cj = { 93.6970, -82.4089, 132.488, -177.977, 73.9072, 20.5440, 137.268, -107.034, -27.9017, 29.0736};
-    double[] rj = { 1, 1, 2, 3, 3, 3, 4, 4, 5, 5};
-    double[] tj = { 1, 2, 0, 0, 1, 2, 0, 1, 0, 1};
-
-    double[] alpha = {6.61738e0, -1.05885e0, 0.201650e0, -0.196930e-1, 0.106460e-2, -0.303284e-4, 0.355861e-6};
-
-    double[] beta = {0, -5.49169e0, 5.85171e0, -3.72865e0, 1.33981e0, -0.233758e0, 0.125718e-1};
-
-    // Коэффициенты уравнения состояния (1) МР 112-03
-    double
-            b10 = 0.366812e0,
-            b11 = -0.252712e0,
-            b12 = -2.84986e0,
-            b13 = 3.60179e0,
-            b14 = -3.18665e0,
-            b15 = 1.54029e0,
-            b16 = -0.260953e0,
-            b17 = -0.391073e-1,
-
-    b20 = 0.140979e0,
-            b21 = -0.724337e-1,
-            b22 = 0.780803e0,
-            b23 = -0.143512e0,
-            b24 = 0.633134e0,
-            b25 = -0.891012e0,
-            b26 = 0.582531e-1,
-            b27 = 0.172908e-1,
-
-    b30 = -0.790202e-1,
-            b31 = -0.213427e0,
-            b32 = -1.25167e0,
-            b33 = -0.164970e0,
-            b34 = 0.684822e0,
-            b35 = 0.221185e0,
-            b36 = 0.634056e-1,
-
-    b40 = 0.313247e0,
-            b41 = 0.885714e0,
-            b42 = 0.634585e0,
-            b43 = -0.162912e0,
-            b44 = -0.217973e0,
-            b45 = 0.925251e-1,
-            b46 = 0.893863e-3,
-
-    b50 = -0.444978e0,
-            b51 = -0.734544e0,
-            b52 = 0.199522e-1,
-            b53 = -0.176007e0,
-            b54 = -0.998455e-1,
-            b55 = -0.620965e-1,
-
-    b60 = 0.28578e0,
-            b61 = 0.258413e0,
-            b62 = 0.749790e-1,
-            b63 = 0.859487e-1,
-            b64 = -0.884071e-3,
-
-    b70 = -0.636588e-1,
-            b71 = -0.105811e0,
-            b72 = -0.345172e-1,
-            b73 = 0.429817e-1,
-            b74 = 0.631385e-2,
-
-    b80 = 0.116375e-3,
-            b81 = 0.361900e-1,
-            b82 = -0.195095e-1,
-            b83 = -0.379583e-2;
 
 
 
@@ -169,6 +89,10 @@ public class AirFlowmeterActivity extends AppCompatActivity {
         //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         setContentView(R.layout.activity_air_flowmeter);
 
+        // создание документа PDF
+        PDFDocumentAdapter = new PDFDocument(getApplicationContext());
+        // работа с БД
+        mDatabaseHelper = new DatabaseHelper(this);
 
         //Настройка ActionBar'а
         ActionBar mActionBar = getSupportActionBar();
@@ -244,6 +168,16 @@ public class AirFlowmeterActivity extends AppCompatActivity {
         spinnerAbsolutePressureDimension.setSelection(2);
         spinnerAtmosphericPressureDimension.setSelection(2);
         spinnerRedundantPressureDimension.setSelection(2);
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        Log.d(LOG_TAG, "onDialogPositiveClick from AirFlowmeterActivity");
+    }
+
+    @Override
+    public void onDialogNeutralClick(DialogFragment dialog) {
+        PDFDocumentAdapter.createPDF(getString(R.string.title_activity_air_flowmeter), "ГССД МР 112-03", result, MainActivity.getDateTime());
     }
 
     // Обработка нажатия на кнопку ButtonCalculate
@@ -417,6 +351,17 @@ public class AirFlowmeterActivity extends AppCompatActivity {
                 "\n\nПоказатель адиабаты\n" + String.format("%.6f", Kad) +
                 "\n\nДинамическая вязкость\n" + String.format("%.6f", mu) + " [мкПа*с]???";
 
+        // Создание диалога для вывода результата
+        DialogFragment dialog = new ResultsDialogFragment();
+        // Настройка заголовка и содержимого диалога
+        ((ResultsDialogFragment) dialog).setBuilder(getString(R.string.air_name), result);
+        // Вызов диалога
+        dialog.show(getSupportFragmentManager(), "ResultDialogFragment");
+        // Добавление записи в БД
+        mDatabaseHelper.insertData(getString(R.string.title_activity_air_flowmeter), "ГССД МР 112-03",  result, MainActivity.getDateTime());
+
+
+/*
         // Инициализация диалога для вывода результата
         AlertDialog.Builder builder = new AlertDialog.Builder(AirFlowmeterActivity.this);
         builder.setTitle(R.string.gas_name)
@@ -445,11 +390,101 @@ public class AirFlowmeterActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         // Отображение диалога для вывода результата
         alert.show();
+        */
     }
 
 
     private void Calculate() {
         //Toast.makeText(this, String.valueOf(T), Toast.LENGTH_SHORT).show();
+
+        final double
+                Pcr = 3.766, // Давление в критической точке, МПа
+                Tcr = 132.5, // Температура в критической точке, К
+                ROcr = 316.5, // Плотность в критической точке, кг/куб.м
+                Zcr = 0.3127934, // Фактор сжимаемости в критической точке
+                Zs = 0.99961, // Фактор сжимаемости при стандартных условиях
+                Ts = 293.15, // Стандартная температура среды, К
+                Ps = 0.101325; // Стандартное абсолютное давление среды, МПа
+
+        double[][] b = {
+                { 0.366812e0, -0.252712e0, -2.84986e0, 3.60179e0, -3.18665e0, 1.54029e0, -0.260953e0, -0.391073e-1 }, //b0
+                { 0.140979e0, -0.724337e-1, 0.780803e0, -0.143512e0, 0.633134e0, -0.891012e0, 0.582531e-1, 0.172908e-1 },
+                { -0.790202e-1, -0.213427e0, -1.25167e0, -0.164970e0, 0.684822e0, 0.221185e0, 0.634056e-1},
+                { 0.313247e0, 0.885714e0, 0.634585e0, -0.162912e0, -0.217973e0, 0.925251e-1, 0.893863e-3},
+                { -0.444978e0, -0.734544e0, 0.199522e-1, -0.176007e0, -0.998455e-1, -0.620965e-1},
+                { 0.28578e0, 0.258413e0, 0.749790e-1, 0.859487e-1, -0.884071e-3},
+                { -0.636588e-1, -0.105811e0, -0.345172e-1, 0.429817e-1, 0.631385e-2},
+                { 0.116375e-3, 0.361900e-1, -0.195095e-1, -0.379583e-2}};
+
+        double[] a = {-66.9619e0, 322.119e0, -547.958e0, 347.643e0, 38.4042e0, -2.18923e0};
+
+        double[] cj = { 93.6970, -82.4089, 132.488, -177.977, 73.9072, 20.5440, 137.268, -107.034, -27.9017, 29.0736};
+        double[] rj = { 1, 1, 2, 3, 3, 3, 4, 4, 5, 5};
+        double[] tj = { 1, 2, 0, 0, 1, 2, 0, 1, 0, 1};
+
+        double[] alpha = {6.61738e0, -1.05885e0, 0.201650e0, -0.196930e-1, 0.106460e-2, -0.303284e-4, 0.355861e-6};
+
+        double[] beta = {0, -5.49169e0, 5.85171e0, -3.72865e0, 1.33981e0, -0.233758e0, 0.125718e-1};
+
+        // Коэффициенты уравнения состояния (1) МР 112-03
+        double
+                b10 = 0.366812e0,
+                b11 = -0.252712e0,
+                b12 = -2.84986e0,
+                b13 = 3.60179e0,
+                b14 = -3.18665e0,
+                b15 = 1.54029e0,
+                b16 = -0.260953e0,
+                b17 = -0.391073e-1,
+
+                b20 = 0.140979e0,
+                b21 = -0.724337e-1,
+                b22 = 0.780803e0,
+                b23 = -0.143512e0,
+                b24 = 0.633134e0,
+                b25 = -0.891012e0,
+                b26 = 0.582531e-1,
+                b27 = 0.172908e-1,
+
+                b30 = -0.790202e-1,
+                b31 = -0.213427e0,
+                b32 = -1.25167e0,
+                b33 = -0.164970e0,
+                b34 = 0.684822e0,
+                b35 = 0.221185e0,
+                b36 = 0.634056e-1,
+
+                b40 = 0.313247e0,
+                b41 = 0.885714e0,
+                b42 = 0.634585e0,
+                b43 = -0.162912e0,
+                b44 = -0.217973e0,
+                b45 = 0.925251e-1,
+                b46 = 0.893863e-3,
+
+                b50 = -0.444978e0,
+                b51 = -0.734544e0,
+                b52 = 0.199522e-1,
+                b53 = -0.176007e0,
+                b54 = -0.998455e-1,
+                b55 = -0.620965e-1,
+
+                b60 = 0.28578e0,
+                b61 = 0.258413e0,
+                b62 = 0.749790e-1,
+                b63 = 0.859487e-1,
+                b64 = -0.884071e-3,
+
+                b70 = -0.636588e-1,
+                b71 = -0.105811e0,
+                b72 = -0.345172e-1,
+                b73 = 0.429817e-1,
+                b74 = 0.631385e-2,
+
+                b80 = 0.116375e-3,
+                b81 = 0.361900e-1,
+                b82 = -0.195095e-1,
+                b83 = -0.379583e-2;
 
         double teta = 0,
                 dw,
